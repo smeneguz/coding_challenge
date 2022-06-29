@@ -1,17 +1,15 @@
 version: '3.8'
 
-# bind mount volume for MongoDB documents
-volumes:
-  - $PWD/mongo-data:/data/db
-  - $PWD/mongo-app:/var/www/html
 
 services:
-  py-mongo:
+  WebApp:
     # build the image from Dockerfile
     build:
-      context: ${PWD}
+      context: "./WebApp"
     ports:
-    - "27017:27017"
-    environment:
-    - MONGO_INITDB_ROOT_USERNAME=root
-    - MONGO_INITDB_ROOT_PASSWORD=12345678
+      - "5000:5000"
+    links:
+      - "MongoDB"
+  MongoDB:
+    build:
+      context: "./MongoDB"
