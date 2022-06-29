@@ -8,6 +8,12 @@ execute the following command in the same directory where the docker-compose fil
 
 Use `docker ps` to get the ID of the running container and then use the `docker inspect {CONTAINER_ID}` command to obtain the IP address the container is using
 
+### CHECK code correction
+
+The Python community has formalized some recommended programming styles to help everyone write code in a common, agreed-upon style that makes the most sense for shared code. This style is captured in [PEP 8](https://peps.python.org/pep-0008/), the "Style Guide for Python Code". Pylint can be a quick and easy way of seeing if your code has captured the essence of [PEP 8](https://peps.python.org/pep-0008/) and is therefore friendly to other potential users.
+
+Example check: `pylint app.py`
+
 ##  API Structure
 
 **1** - The Polling tool: users can open the page or get a list via API, see the
