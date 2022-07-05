@@ -2,14 +2,14 @@ version: '3.8'
 
 
 services:
-  WebApp:
+  webapp:
     # build the image from Dockerfile
     build:
-      context: "./WebApp"
+      context: "./webapp"
     ports:
       - "5000:5000"
     links:
-      - "MongoDB"
-  MongoDB:
+      - "mongodb"
+  mongodb:
     build:
-      context: "./MongoDB"
+      context: "./mongodb"
