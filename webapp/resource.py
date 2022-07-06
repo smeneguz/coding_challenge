@@ -92,7 +92,8 @@ class RetrieveImg(Resource):
         # Successful response 
         retJson = {
             "status": 200,
-            "obj": images
+            "obj": str(images),
+            "description": helper.getUserDescriptions(username)
         }
         return jsonify(retJson)
 
@@ -149,7 +150,7 @@ class Load(Resource):
         imgs.append(converted_string)
         descr.append(description)
 
-        helper.images.update({
+        helper.images.update_many({
             "Username": username
         }, {
             "$set": {

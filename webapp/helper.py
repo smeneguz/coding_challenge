@@ -1,6 +1,7 @@
 import bcrypt
 from pymongo import MongoClient
-
+import http
+import requests
 """
 HELPER FUNCTIONS
 """
@@ -23,7 +24,7 @@ def verifyUsers(username, password):
         "Username" : username
     })[0]["Password"]
 
-    if bcrypt.checkpw(password.encode('utf8', str(user_hashed_pw))):
+    if bcrypt.checkpw(password.encode('utf8'), user_hashed_pw):
         return True
     else:
         return False
@@ -39,3 +40,10 @@ def getUserDescriptions(username):
     return images.find({
         "Username": username,
     })[0]["Descriptions"]
+
+def is_url_image(image_url):
+    image_formats = ("image/png", "image/jpeg", "image/jpg")
+    r = requests.head(image_url)
+    if r.headers["content-type"] in image_formats:
+        return True
+    return False
